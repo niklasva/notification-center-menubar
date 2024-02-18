@@ -1,2 +1,5 @@
 # notification-center-menubar
 macOS menubar app for monitoring unhandled notifications in notification center
+
+[[file:screenshot-1.png]]
+[[file:screenshot-2.png]]
