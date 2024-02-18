@@ -1,5 +1,24 @@
-# notification-center-menubar
+* notification-center-menubar
 macOS menubar app for monitoring unhandled notifications in notification center
 
 [[file:screenshot-1.png]]
 [[file:screenshot-2.png]]
+
+** Dependencies
+- rumps
+- py2app
+
+** Building
+Install dependencies:
+#+begin_src sh
+pip3 install -r requirements.txt
+#+end_src
+
+Build application:
+#+begin_src sh
+python setup.py py2app
+#+end_src
+
+** Running
+Launch =notification-center-menubar=. The app runs in background without a Dock Icon.
+To exit the application, press the menu bar icon and select Quit.
