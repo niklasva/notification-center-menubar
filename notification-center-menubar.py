@@ -23,14 +23,14 @@ class NotificationCounter(rumps.App):
 
 
     @rumps.timer(5)
-    def a(self, _sender_):
+    def a(self, _):
         notification_count = self.get_notification_count()
         circled_zero = ord("⓿")
-        circled_one = ord("❶")
+        circled_one = ord("➊")
         if notification_count == 0:
-            circled_number = chr(circled_zero + notification_count)
+            circled_number = chr(circled_zero)
         else:
-            circled_number = chr(circled_one + notification_count - 1)
+            circled_number = min(chr(circled_one + notification_count - 1), "➓")
         self.title = circled_number
 
 
