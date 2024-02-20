@@ -10,10 +10,17 @@ class NotificationCounter(rumps.App):
 
     def get_notification_count(self):
         user_dir = os.popen("getconf DARWIN_USER_DIR").read().strip()
-        file = user_dir + "com.apple.notificationcenter/db2/db"
-        db = sqlite3.connect(f'file:{file}?mode=ro', uri=True)
-        count = db.execute("SELECT count(1) FROM record").fetchone()[0]
+
+        file_path = os.path.join(user_dir, "com.apple.notificationcenter/db2/db")
+        if not os.path.exists(file_path):
+            return 0
+
+        with sqlite3.connect(f'file:{file_path}?mode=ro', uri=True) as db:
+            cursor = db.cursor()
+            cursor.execute("SELECT count(1) FROM record")
+            count = cursor.fetchone()[0]
         return count
+
 
     @rumps.timer(5)
     def a(self, _sender_):
